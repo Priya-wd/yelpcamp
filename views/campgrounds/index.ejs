@@ -1,0 +1,56 @@
+<!-- including header file -->
+<%- include("../layout/header") %>
+
+<div class="">
+    
+<!-- page content -->
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1> Welcome to YelpCamp!!</h1>
+            <p>View our campgrounds from all over the world!</p>
+            <a class="btn btn-primary" href="/campgrounds/new">Add New Campground</a>
+            <!-- admin authentication code -->
+            <!-- <% //if(currentUser){ %>
+                <p>
+                <% //if(currentUser.username === "Admin"){ %>
+                        <a class="btn btn-primary" href="/campgrounds/new">Add New Campground</a>
+                 <%// } %>                 
+                </p>
+              <% //} %>              -->
+              <!-- end code -->
+        </div>
+    </header>
+
+    <!-- Display Campgrounds Data -->
+    <div class="container">
+        <div class="row">
+            <% campgroundsData.forEach(campground => {%>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="card">
+                    <!-- <a href="/campgrounds/<%= campground._id %>"> -->
+                    <img class="card-img-top" style="width: 100%; height:25vh; object-fit: cover;"
+                        src="<%= campground.image %>" alt="campground image" class="img-thumbnail">
+                    <!-- </a> -->
+                    <div class="card-body">
+                        <h6 class="card-title text-center"><strong><%= campground.name %></strong></h6>
+                        <p class="card-text"> <%= //campground.description%>
+                           <div class="text-center"><a href="/campgrounds/<%= campground._id %>" class="btn btn-primary btn-sm">show more</a></div>
+                        </p>
+                         
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" style="width:100%; height:25vh; object-fit:cover;"  src="<%= campground.image %>" alt="">
+                </a>
+               </div> -->
+            <%}); %>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--including footer file-->
+<%- include("../layout/footer") %>
