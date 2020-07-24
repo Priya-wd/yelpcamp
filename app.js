@@ -1,4 +1,5 @@
 //REQUIRE 
+require('dotenv').config();
 const express = require("express");  
 const app = express(); 
 const bodyParser = require("body-parser");  
@@ -20,8 +21,18 @@ const authRoutes = require('./routes/auth');
 //moment
 app.locals.moment = require('moment');
 
-//Mongo-DB Connection  
-mongoose.connect("mongodb://localhost/yelpcampdb", { useNewUrlParser: true, useUnifiedTopology: true });
+//Mongo-DB Connection 
+var URL = process.env.MONGODB_ATLAS_URL || "mongodb://localhost/yelpcampdb"; 
+//console.log(URL);
+mongoose.connect(URL, { 
+    useNewUrlParser: true, 
+    useCreateIndex: true,
+    useUnifiedTopology: true 
+}).then(() => {
+    console.log("Connected to DB!");
+}).catch(err => {
+    console.log(err);
+});
 
 //APP CONFIG
 app.set("view engine", "ejs");   //set all pages in views dir as .ejs pages
