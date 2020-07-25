@@ -22,7 +22,11 @@ const authRoutes = require('./routes/auth');
 app.locals.moment = require('moment');
 
 //Mongo-DB Connection 
-var URL = "mongodb://localhost:27017/yelpcampdb" || process.env.MONGO_URL; 
+if(process.env.NODE_ENV == "production"){
+    var URL = process.env.MONGO_URL;
+}else{
+    URL = "mongodb://localhost:27017/yelpcampdb"; 
+}
 
 mongoose.connect(URL, { 
     useNewUrlParser: true, 
@@ -30,9 +34,10 @@ mongoose.connect(URL, {
     useUnifiedTopology: true
 }).then(() => {
     console.log("Connected to DB!");
-    //console.log(URL);
+    console.log(URL);
 }).catch(err => {
     console.log(err);
+    console.log(URL);
 });
 
 //APP CONFIG
