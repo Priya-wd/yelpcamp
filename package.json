@@ -1,6 +1,6 @@
 {
   "name": "yelpcamp",
-  "version": "8.0.0",
+  "version": "1.0.0",
   "description": "Updated- Refactored Middleware Functions & Added Falsh Messages. Features-User can only edit or delete his own posts & comments",
   "main": "app.js",
   "scripts": {
